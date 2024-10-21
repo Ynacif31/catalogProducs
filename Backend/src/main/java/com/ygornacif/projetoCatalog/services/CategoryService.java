@@ -2,9 +2,9 @@ package com.ygornacif.projetoCatalog.services;
 
 import com.ygornacif.projetoCatalog.DTO.CategoryDTO;
 import com.ygornacif.projetoCatalog.entities.Category;
-import com.ygornacif.projetoCatalog.entities.exceptions.EntityNotFoundException;
+import com.ygornacif.projetoCatalog.entities.exceptions.ResourceNotFoundException;
 import com.ygornacif.projetoCatalog.repositories.CategoryRepository;
-import org.hibernate.ObjectNotFoundException;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -31,7 +31,27 @@ public class CategoryService {
     @Transactional(readOnly = true)
     public CategoryDTO findById(Long id) {
         Optional<Category> obj = categoryRepository.findById(id);
-        Category category = obj.orElseThrow(() -> new EntityNotFoundException("Entity not found"));
+        Category category = obj.orElseThrow(() -> new ResourceNotFoundException("Entity not found"));
         return new CategoryDTO(category);
+    }
+
+    @Transactional
+    public CategoryDTO insert(CategoryDTO dto) {
+        Category entity = new Category();
+        entity.setName(dto.getName());
+        entity = categoryRepository.save(entity);
+        return new CategoryDTO(entity);
+    }
+
+    @Transactional
+    public CategoryDTO update(Long id, CategoryDTO dto) {
+        try {
+            Category entity = categoryRepository.getReferenceById(id);
+            entity.setName(dto.getName());
+            entity = categoryRepository.save(entity);
+            return new CategoryDTO(entity);
+        } catch (EntityNotFoundException e) {
+            throw new ResourceNotFoundException("Id not found: " + id);
+        }
     }
 }
