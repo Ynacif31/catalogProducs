@@ -64,7 +64,7 @@ public class CategoryService {
             throw new ResourceNotFoundException("Id not found: " + id);
         }
         try {
-            categoryRepository.deleteById(id); 
+            categoryRepository.deleteById(id);
         } catch (DataIntegrityViolationException e) {
             throw new DatabaseException("Integrity violation");
         }
