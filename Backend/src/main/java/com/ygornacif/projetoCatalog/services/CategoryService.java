@@ -13,10 +13,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
+
 
 
 
@@ -36,8 +34,8 @@ public class CategoryService {
     @Transactional(readOnly = true)
     public CategoryDTO findById(Long id) {
         Optional<Category> obj = categoryRepository.findById(id);
-        Category category = obj.orElseThrow(() -> new ResourceNotFoundException("Entity not found"));
-        return new CategoryDTO(category);
+        Category entity = obj.orElseThrow(() -> new ResourceNotFoundException("Entity not found"));
+        return new CategoryDTO(entity);
     }
 
     @Transactional
