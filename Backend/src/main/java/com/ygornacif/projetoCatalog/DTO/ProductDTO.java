@@ -21,7 +21,9 @@ public class ProductDTO implements Serializable {
 
     private List<CategoryDTO> categories = new ArrayList<>();
 
-    // Construtor para Set<Category>
+    public ProductDTO() {}
+
+
     public ProductDTO(Product entity, Set<Category> categories) {
         this.id = entity.getId();
         this.name = entity.getName();
@@ -30,7 +32,7 @@ public class ProductDTO implements Serializable {
         this.imgUrl = entity.getImgUrl();
         this.date = entity.getDate();
         // Adiciona categorias ao DTO
-        categories.forEach(cat -> this.categories.add(new CategoryDTO(cat))); // Certifique-se de ter um construtor em CategoryDTO
+        categories.forEach(cat -> this.categories.add(new CategoryDTO(cat)));
     }
 
     public ProductDTO(Long id, String name, String description, double price, String imgUrl, Instant date, Set<Category> categories) {
