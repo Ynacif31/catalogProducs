@@ -15,7 +15,7 @@ public class Product implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
     private String name;
 
     @Column(columnDefinition = "TEXT")
@@ -33,7 +33,7 @@ public class Product implements Serializable {
     Set<Category> categories = new HashSet<>();
 
 
-    public Product(long id, String name, String description, double price, String imgUrl, Instant date) {
+    public Product(Long id, String name, String description, double price, String imgUrl, Instant date) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -50,7 +50,7 @@ public class Product implements Serializable {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
