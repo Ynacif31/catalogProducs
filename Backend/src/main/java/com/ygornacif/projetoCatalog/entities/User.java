@@ -1,5 +1,6 @@
 package com.ygornacif.projetoCatalog.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
@@ -17,10 +18,14 @@ public class User implements Serializable {
     private long id;
     private String firstName;
     private String lastName;
+
+    @Column(unique = true)
     private String email;
+
+    @JsonIgnore
     private String password;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "tb_user_role",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
