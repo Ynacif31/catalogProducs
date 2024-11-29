@@ -3,6 +3,7 @@ package com.ygornacif.projetoCatalog.services;
 import com.ygornacif.projetoCatalog.DTO.RoleDTO;
 import com.ygornacif.projetoCatalog.DTO.UserDTO;
 import com.ygornacif.projetoCatalog.DTO.UserInsertDTO;
+import com.ygornacif.projetoCatalog.DTO.UserUpdateDTO;
 import com.ygornacif.projetoCatalog.entities.Role;
 import com.ygornacif.projetoCatalog.entities.User;
 import com.ygornacif.projetoCatalog.entities.exceptions.DatabaseException;
@@ -56,14 +57,15 @@ public class UserService {
     }
 
     @Transactional
-    public UserDTO update(Long id, UserDTO dto) {
+    public UserDTO update(Long id, UserUpdateDTO dto) {
         try {
             User entity = repository.getReferenceById(id);
             copyDtoToEntity(dto, entity);
             entity = repository.save(entity);
             return new UserDTO(entity);
-        } catch (EntityNotFoundException e) {
-            throw new ResourceNotFoundException("Id not found: " + id);
+        }
+        catch (EntityNotFoundException e) {
+            throw new ResourceNotFoundException("Id not found " + id);
         }
     }
 

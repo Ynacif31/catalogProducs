@@ -1,6 +1,8 @@
 package com.ygornacif.projetoCatalog.DTO;
 
+import com.ygornacif.projetoCatalog.services.validation.UserInsertValid;
 
+@UserInsertValid
 public class UserInsertDTO extends UserDTO{
     private static final long serialVersionUID = 1L;
 
