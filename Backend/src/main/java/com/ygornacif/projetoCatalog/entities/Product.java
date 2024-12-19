@@ -1,5 +1,6 @@
 package com.ygornacif.projetoCatalog.entities;
 
+import com.ygornacif.projetoCatalog.entities.projections.IdProjection;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
@@ -10,8 +11,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "tb_product")
-public class Product implements Serializable {
-    private static final long serialVersionUID = 1L;
+public class Product implements IdProjection<Long> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -46,7 +46,8 @@ public class Product implements Serializable {
 
     }
 
-    public long getId() {
+    @Override
+    public Long getId() {
         return id;
     }
 

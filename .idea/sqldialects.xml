@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="SqlDialectMappings">
+    <file url="file://$PROJECT_DIR$/Backend/src/main/java/com/ygornacif/projetoCatalog/repositories/ProductRepository.java" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/Backend/src/main/resources/import.sql" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/create.sql" dialect="PostgreSQL" />
+  </component>
+</project>

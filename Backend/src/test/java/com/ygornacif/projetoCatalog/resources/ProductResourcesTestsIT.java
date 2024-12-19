@@ -3,6 +3,7 @@ package com.ygornacif.projetoCatalog.resources;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ygornacif.projetoCatalog.DTO.ProductDTO;
 import com.ygornacif.projetoCatalog.tests.Factory;
+import com.ygornacif.projetoCatalog.tests.TokenUtil;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,15 +29,25 @@ public class ProductResourcesTestsIT {
     @Autowired
     ObjectMapper jacksonObjectMapper;
 
+    @Autowired
+    TokenUtil tokenUtil;
+
     private long existId;
     private long notExistId;
     private long dependentId;
+
+    private String username, password, bearerToken;
 
     @BeforeEach
     void setUp() throws Exception {
         existId = 1l;
         notExistId = 10000l;
         dependentId = 25l;
+
+        username = "maria@gmail.com";
+        password = "123456";
+
+        bearerToken = tokenUtil.obtainAccessToken(mockMvc, username, password);
     }
 
     @Test
@@ -58,7 +69,9 @@ public class ProductResourcesTestsIT {
         String expectedName = productDTO.getName();
         String expectedDescription = productDTO.getDescription();
 
-        mockMvc.perform(put("/products/{id}", existId).content(jsonBody).contentType(MediaType.APPLICATION_JSON))
+        mockMvc.perform(put("/products/{id}", existId)
+                        .header("Authorization", "Bearer " + bearerToken)
+                        .content(jsonBody).contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status()
                         .isOk())
                 .andExpect(jsonPath("$.id").value(existId))
@@ -74,7 +87,9 @@ public class ProductResourcesTestsIT {
         String expectedName = productDTO.getName();
         String expectedDescription = productDTO.getDescription();
 
-        mockMvc.perform(put("/products/{id}", notExistId).content(jsonBody).contentType(MediaType.APPLICATION_JSON))
+        mockMvc.perform(put("/products/{id}", notExistId)
+                        .header("Authorization", "Bearer " + bearerToken)
+                        .content(jsonBody).contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isNotFound());
     }
 }
