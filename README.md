@@ -51,47 +51,46 @@ Antes de começar, verifique se você atende aos seguintes requisitos:
 ## 🚀 Instalando ProductsCatalog
 
 ### Linux/MacOS
-
-git clone https://github.com/seu-usuario/products-catalog.git
-cd products-catalog
+```git clone https://github.com/seu-usuario/products-catalog.git```
+```cd products-catalog```
 
 ---
 
-Usando ProductsCatalog
+## Usando ProductsCatalog
 
-Exemplos de Endpoints
+### Exemplos de Endpoints
 
-Autenticação
-	•	POST /auth/recover-token: Gera um token para recuperação de senha.
-	•	PUT /auth/new-password: Atualiza a senha do usuário.
+### Autenticação
+ - POST /auth/recover-token: Gera um token para recuperação de senha.
+ - PUT /auth/new-password: Atualiza a senha do usuário.
 
-Produtos
-	•	GET /products: Lista todos os produtos com suporte a paginação.
-	•	GET /products/{id}: Detalha um produto específico.
-	•	POST /products: Adiciona um novo produto.
-	•	PUT /products/{id}: Atualiza um produto existente.
-	•	DELETE /products/{id}: Remove um produto.
+### Produtos
+- GET /products: Lista todos os produtos com suporte a paginação.
+- GET /products/{id}: Detalha um produto específico.
+- POST /products: Adiciona um novo produto.
+- PUT /products/{id}: Atualiza um produto existente.
+- DELETE /products/{id}: Remove um produto.
 
-Categorias
-	•	GET /categories: Lista todas as categorias.
-	•	GET /categories/{id}: Detalha uma categoria específica.
-	•	POST /categories: Adiciona uma nova categoria.
-	•	PUT /categories/{id}: Atualiza uma categoria existente.
-	•	DELETE /categories/{id}: Remove uma categoria.
+### Categorias
+- GET /categories: Lista todas as categorias.
+- GET /categories/{id}: Detalha uma categoria específica.
+- POST /categories: Adiciona uma nova categoria.
+- PUT /categories/{id}: Atualiza uma categoria existente.
+- DELETE /categories/{id}: Remove uma categoria.
 
-Usuários
-	•	GET /users: Lista todos os usuários com suporte a paginação.
-	•	GET /users/{id}: Detalha um usuário específico.
-	•	POST /users: Adiciona um novo usuário.
-	•	PUT /users/{id}: Atualiza os dados de um usuário.
-	•	DELETE /users/{id}: Remove um usuário.
+### Usuários
+- GET /users: Lista todos os usuários com suporte a paginação.
+- GET /users/{id}: Detalha um usuário específico.
+- POST /users: Adiciona um novo usuário.
+- PUT /users/{id}: Atualiza os dados de um usuário.
+- DELETE /users/{id}: Remove um usuário.
 
 ---
 
 ### Docker
 Para subir o banco de dados PostgreSQL com Docker, execute:
-- docker-compose up
+```- docker-compose up```
 
 ### Testes
 Para executar os testes, execute:
-- mvn test
+```- mvn test```
