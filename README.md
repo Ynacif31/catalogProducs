@@ -52,9 +52,8 @@ Antes de começar, verifique se você atende aos seguintes requisitos:
 
 ### Linux/MacOS
 
-```bash
 git clone https://github.com/seu-usuario/products-catalog.git
-cd products-catalog 
+cd products-catalog
 
 ---
 
